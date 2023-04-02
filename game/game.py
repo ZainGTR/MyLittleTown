@@ -42,7 +42,12 @@ class Game:
          for x in range(self.world.grid_max_x):
               for y in range(self.world.grid_max_y):
                    sq = self.world.world[x][y]["rect"]
+
                    rect = pygame.Rect(sq[0][0], sq[0][1], LAND_SIZE, LAND_SIZE)
                    pygame.draw.rect(self.screen, "white", rect, 1)
+
+                   poly = self.world.world[x][y]["iso_poly"]
+                   pygame.draw.polygon(self.screen, "red", poly, 1)
+
 
          pygame.display.flip()
