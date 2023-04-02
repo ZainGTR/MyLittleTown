@@ -3,34 +3,42 @@
 # the town can have farms for recources, houses for workers and schools and millitary for defence/attaques. 
 # I have 16 days until the deadline, if I manage one big task per day I can make it, I never used pygames before, I work with more visual IDE like unreal, I need the money so, just deal with it.
 # Steps: 
-# 1 pygame docs and setup + init code 
-# 2 database connection and user registration and town init 
+# 1 pygame docs and setup + init code + setup camera + world game class
+# 2 database connection and user registration and town init + resource managment 
 # 3 a grid system to manage spots in the town and spawn new buildings 
 # 4 input controller and setup clicks events
 # 5 will see from there 
 
 # 1 pygame setup
 import pygame
+from game.game import Game
 
-pygame.init()
-screen = pygame.display.set_mode((1280, 720))
-clock = pygame.time.Clock()
-running = True
 
-while running:
+def main():
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    #stats
+    uiMode = True
+    playMode = True
 
-    # bg color I guess
-    screen.fill("purple")
+    pygame.init()
+    pygame.mixer.init()
 
-    # RENDER YOUR GAME HERE
+    screen = pygame.display.set_mode((1280, 720))
+    clock = pygame.time.Clock()
+    
+    #implement menu
 
-    # flip() the display to put your work on screen
-    pygame.display.flip()
+    #implement game
+    game = Game(screen, clock)
 
-    clock.tick(60)  # limits FPS to 60
+    while uiMode:
 
-pygame.quit()
+        # start menu
+        
+        while playMode:
+
+            #Game loop
+            game.run()
+
+if __name__ == "__main__":
+    main()
