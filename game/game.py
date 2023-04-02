@@ -1,12 +1,16 @@
 import pygame
 import sys
+from game.worldEngine import WorldEngine
+from game.config import LAND_SIZE
+
 
 class Game:
 
     def __init__(self, screen, clock) -> None:
         self.screen = screen
         self.clock = clock
-        self.width, self.hight = self.screen.get_size()
+        self.width, self.height = self.screen.get_size()
+        self.world = WorldEngine(6, 6, self.width, self.height)
 
     def run(self):
         self.playing = True
@@ -31,5 +35,14 @@ class Game:
          pass
     
     def draw(self):
-         self.screen.fill("orange")
+         
+         self.screen.fill("black")
+         
+         #drawing the grid
+         for x in range(self.world.grid_max_x):
+              for y in range(self.world.grid_max_y):
+                   sq = self.world.world[x][y]["rect"]
+                   rect = pygame.Rect(sq[0][0], sq[0][1], LAND_SIZE, LAND_SIZE)
+                   pygame.draw.rect(self.screen, "white", rect, 1)
+
          pygame.display.flip()
