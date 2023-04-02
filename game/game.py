@@ -47,6 +47,8 @@ class Game:
                    pygame.draw.rect(self.screen, "white", rect, 1)
 
                    poly = self.world.world[x][y]["iso_poly"]
+                   #adding offset
+                   poly = [(x + self.width/2, y + self.height/4) for x, y in poly]
                    pygame.draw.polygon(self.screen, "red", poly, 1)
 
 
