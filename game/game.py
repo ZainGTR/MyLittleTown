@@ -10,7 +10,7 @@ class Game:
         self.screen = screen
         self.clock = clock
         self.width, self.height = self.screen.get_size()
-        self.world = WorldEngine(6, 6, self.width, self.height)
+        self.world = WorldEngine(10, 10, self.width, self.height)
 
     def run(self):
         self.playing = True
@@ -41,21 +41,26 @@ class Game:
          #drawing the grid
          for x in range(self.world.grid_max_x):
               for y in range(self.world.grid_max_y):
-                   sq = self.world.world[x][y]["rect"]
+                #    sq = self.world.world[x][y]["rect"]
 
-                   rect = pygame.Rect(sq[0][0], sq[0][1], LAND_SIZE, LAND_SIZE)
-                   pygame.draw.rect(self.screen, "white", rect, 1)
+                #    rect = pygame.Rect(sq[0][0], sq[0][1], LAND_SIZE, LAND_SIZE)
+                #    pygame.draw.rect(self.screen, "white", rect, 1)
 
                    #draw tiles
                    render_position = self.world.world[x][y]["render_pos"]
                    self.screen.blit(self.world.tiles["block"], (render_position[0] + self.width/2, render_position[1] + self.height/4 ))
+                   #draw tree/rock
+                   tile = self.world.world[x][y]["tile"]
+                   if tile != "":
+                        self.screen.blit(self.world.tiles[tile],
+                                        (render_position[0] + self.width/2,
+                                        render_position[1] + self.height/4 - (self.world.tiles[tile].get_height() - LAND_SIZE)))
 
 
-
-                   poly = self.world.world[x][y]["iso_poly"]
-                   #adding offset
-                   poly = [(x + self.width/2, y + self.height/4) for x, y in poly]
-                   pygame.draw.polygon(self.screen, "red", poly, 1)
+                #    poly = self.world.world[x][y]["iso_poly"]
+                #    #adding offset
+                #    poly = [(x + self.width/2, y + self.height/4) for x, y in poly]
+                #    pygame.draw.polygon(self.screen, "red", poly, 1)
 
 
          pygame.display.flip()

@@ -1,4 +1,5 @@
 import pygame
+import random
 from .config import LAND_SIZE
 
 class WorldEngine:
@@ -43,12 +44,22 @@ class WorldEngine:
         min_x = min([x for x, y in iso_poly])
         min_y = min([y for x, y in iso_poly])
 
+        r = random.randint(1, 100)
+
+        if r <= 5:
+            tile = "tree"
+        elif r <= 10:
+            tile = "rock"
+        else:
+            tile = ""
+
         #output dict for the land to add more data later
         output = {
             "grid": [grid_x, grid_y],
             "rect": rect,
             "iso_poly": iso_poly,
-            "render_pos": [min_x, min_y]
+            "render_pos": [min_x, min_y],
+            "tile": tile
         }
 
         return output
