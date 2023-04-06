@@ -9,6 +9,7 @@ class WorldEngine:
         self.width = width
         self.height = height
         self.world = self.create_world()
+        self.tiles = self.load_images()
     
 
     def create_world(self):
@@ -39,12 +40,15 @@ class WorldEngine:
         # creating the isometric poly
         iso_poly = [self.land_to_iso(x, y) for x, y in rect]
 
+        min_x = min([x for x, y in iso_poly])
+        min_y = min([y for x, y in iso_poly])
 
         #output dict for the land to add more data later
         output = {
             "grid": [grid_x, grid_y],
             "rect": rect,
-            "iso_poly": iso_poly
+            "iso_poly": iso_poly,
+            "render_pos": [min_x, min_y]
         }
 
         return output
@@ -54,3 +58,10 @@ class WorldEngine:
         iso_x = x - y
         iso_y = (x + y)/2
         return iso_x, iso_y
+    
+    def load_images(selft):
+        block = pygame.image.load("game/assets/tiles/block.png")
+        tree = pygame.image.load("game/assets/tiles/tree.png")
+        rock = pygame.image.load("game/assets/tiles/rock.png")
+
+        return {"block": block, "tree": tree, "rock": rock}

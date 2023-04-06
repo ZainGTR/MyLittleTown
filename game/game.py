@@ -46,6 +46,12 @@ class Game:
                    rect = pygame.Rect(sq[0][0], sq[0][1], LAND_SIZE, LAND_SIZE)
                    pygame.draw.rect(self.screen, "white", rect, 1)
 
+                   #draw tiles
+                   render_position = self.world.world[x][y]["render_pos"]
+                   self.screen.blit(self.world.tiles["block"], (render_position[0] + self.width/2, render_position[1] + self.height/4 ))
+
+
+
                    poly = self.world.world[x][y]["iso_poly"]
                    #adding offset
                    poly = [(x + self.width/2, y + self.height/4) for x, y in poly]
