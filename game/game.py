@@ -1,7 +1,8 @@
 import pygame
 import sys
 from game.worldEngine import WorldEngine
-from game.config import LAND_SIZE
+from game.config import *
+from game.ui import *
 
 
 class Game:
@@ -61,6 +62,6 @@ class Game:
                 #    #adding offset
                 #    poly = [(x + self.width/2, y + self.height/4) for x, y in poly]
                 #    pygame.draw.polygon(self.screen, "red", poly, 1)
-
+         draw_text(self.screen, str(int(self.clock.get_fps())), "white", 25, (200,0) )
 
          pygame.display.flip()

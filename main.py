@@ -26,6 +26,7 @@ def main():
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     clock = pygame.time.Clock()
     
+    
     #implement menu
 
     #implement game
