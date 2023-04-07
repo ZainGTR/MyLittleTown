@@ -9,8 +9,10 @@ class WorldEngine:
         self.grid_max_y = grid_max_y
         self.width = width
         self.height = height
-        self.world = self.create_world()
+        self.empty_tiles = pygame.Surface((width, height))
         self.tiles = self.load_images()
+        self.world = self.create_world()
+        
     
 
     def create_world(self):
@@ -23,7 +25,9 @@ class WorldEngine:
                 world_land = self.grid_to_land(grid_x, grid_y)
                 world[grid_x].append(world_land)
 
-
+                # TODO use surface to render empty lands
+                render_pos = world_land["render_pos"]
+                self.empty_tiles.blit(self.tiles["block"], (render_pos[0] + self.width/2, render_pos[1] + self.height/4))
         return world
 
 

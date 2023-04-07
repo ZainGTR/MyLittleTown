@@ -37,7 +37,7 @@ class Game:
     def draw(self):
          
          self.screen.fill("black")
-         
+         self.screen.blit(self.world.empty_tiles, (0,0))
          #drawing the grid
          for x in range(self.world.grid_max_x):
               for y in range(self.world.grid_max_y):
@@ -48,7 +48,7 @@ class Game:
 
                    #draw tiles
                    render_position = self.world.world[x][y]["render_pos"]
-                   self.screen.blit(self.world.tiles["block"], (render_position[0] + self.width/2, render_position[1] + self.height/4 ))
+                   #self.screen.blit(self.world.tiles["block"], (render_position[0] + self.width/2, render_position[1] + self.height/4 ))
                    #draw tree/rock
                    tile = self.world.world[x][y]["tile"]
                    if tile != "":
