@@ -64,7 +64,7 @@ class Player(pygame.sprite.Sprite):
 		self.toggle_shop = toggle_shop
 
 		# sound
-		self.watering = pygame.mixer.Sound('../audio/water.mp3')
+		self.watering = pygame.mixer.Sound('./audio/water.mp3')
 		self.watering.set_volume(0.2)
 
 	def use_tool(self):
@@ -97,7 +97,7 @@ class Player(pygame.sprite.Sprite):
 						   'right_water':[],'left_water':[],'up_water':[],'down_water':[]}
 
 		for animation in self.animations.keys():
-			full_path = '../graphics/character/' + animation
+			full_path = './graphics/character/' + animation
 			self.animations[animation] = import_folder(full_path)
 
 	def animate(self,dt):
